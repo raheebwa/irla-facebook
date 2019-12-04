@@ -23,21 +23,21 @@
   </a>
 
   <h3 align="center">
-	Your Title Here
+	irla-Facebook
   </h3>
 
   <p align="center">
-    Describe project
+    An impememnation of a social media site like facebook with most backend compatibility
     <br />
-    <a href="https://github.com/[github-user]/[repo-name]/blob/master/README.md"><strong>Explore the docs 📚</strong></a>
+    <a href="https://github.com/[github-user]/irla-facebook/blob/master/README.md"><strong>Explore the docs 📚</strong></a>
     <br />
     <br />
 	  🖊️
     <a href="https://www.theodinproject.com">Assigment</a>
     🐛
-    <a href="https://github.com/[github-user]/[repo-name]/issues">Report Bug</a>
+    <a href="https://github.com/[github-user]/irla-facebook/issues">Report Bug</a>
     🙏
-    <a href="https://github.com/[github-user]/[repo-name]/issues">Request Feature</a>
+    <a href="https://github.com/[github-user]/irla-facebook/issues">Request Feature</a>
   </p>
 </p>
 
@@ -83,13 +83,13 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/[github-user]/[repo-name].svg?style=flat-square
-[contributors-url]: https://github.com/[github-user]/[repo-name]/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/[github-user]/[repo-name]
-[forks-url]: https://github.com/[github-user]/[repo-name]/network/members
-[stars-shield]: https://img.shields.io/github/stars/[github-user]/[repo-name]
-[stars-url]: https://github.com/[github-user]/[repo-name]/stargazers
-[issues-shield]: https://img.shields.io/github/issues/[github-user]/[repo-name]
-[issues-url]: https://github.com/[github-user]/[repo-name]/issues
-[license-shield]: https://img.shields.io/github/license/[github-user]/[repo-name]
-[license-url]: https://github.com/[github-user]/[repo-name]/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/[github-user]/irla-facebook.svg?style=flat-square
+[contributors-url]: https://github.com/[github-user]/irla-facebook/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/[github-user]/irla-facebook
+[forks-url]: https://github.com/[github-user]/irla-facebook/network/members
+[stars-shield]: https://img.shields.io/github/stars/[github-user]/irla-facebook
+[stars-url]: https://github.com/[github-user]/irla-facebook/stargazers
+[issues-shield]: https://img.shields.io/github/issues/[github-user]/irla-facebook
+[issues-url]: https://github.com/[github-user]/irla-facebook/issues
+[license-shield]: https://img.shields.io/github/license/[github-user]/irla-facebook
+[license-url]: https://github.com/[github-user]/irla-facebook/blob/master/LICENSE.txt
