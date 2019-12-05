@@ -1,11 +1,43 @@
-<p>
-  <strong>Written By:</strong>
-  <%= @post.user.email %>
-</p>
-<p>
-  <strong>Body:</strong>
-  <%= @post.body %>
-</p>
+<div class="card">
+    <div class="card-header">
+      <a href="<%= user_path(@post.user) %>">
+        <%= gravatar_tag @post.user.email, :size => 36, :html => { :class => "img rounded-circle" } %>
+        <%= @post.user.email %>
+      </a>
+    </div>
+    <% if @post.image_path %>
+      <img class="card-img-top" src="<%= @post.image_path%>" alt="image">
+    <% end %>
+    <div class="card-body">
+      <!-- <h4 class="card-title">Title</h4> -->
+      <p class="card-text"><%= @post.body %></p>
+      <div class="dropdown float-right">
+        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          More
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <%= link_to 'Edit', edit_post_path(@post), class: "dropdown-item" %>
+          <%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' }, class:"dropdown-item" %>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <% if @post.comments %>
+        <ul class="list-group list-group-flush">
+          <% @post.comments.each do |comment| %>
+            <li class="list-group-item">
+            <%= gravatar_tag comment.user.email, :size => 28, :html => { :class => "img rounded-circle" } %>
+            <strong><%= "#{comment.user.first_name} #{comment.user.last_name}" %></strong><br>
+            <%= comment.body%>
+            <% if comment.image_path %>
+              <img class="card-img-top" src="<%= comment.image_path%>" alt="image">
+            <% end %>
+            </li>
+          <% end %>
+        </ul> 
+      <% else %>
+        No
+      <% end %>
+    </div>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
