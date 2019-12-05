@@ -11,6 +11,9 @@
     <div class="card-body">
       <!-- <h4 class="card-title">Title</h4> -->
       <p class="card-text"><%= @post.body %></p>
+      <% if @post.likes %>
+        <h1 class="dropdown float-left">Likes: <span class="badge badge-secondary"><%= @post.likes.count %></span></h1> 
+      <% end %>
       <div class="dropdown float-right">
         <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           More
