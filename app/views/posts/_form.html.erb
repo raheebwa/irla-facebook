@@ -13,12 +13,17 @@
 
   <%= form.hidden_field :user_id, value: current_user.id %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :body %>
-    <%= form.text_area :body %>
+    <%= form.text_area :body, class: "form-control" %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-group">
+    <%= form.label :image_path %>
+    <%= form.text_field :image_path, class: "form-control" %>
+  </div>
+
+  <div class="actions mb-3">
+    <%= form.submit 'Submit', class: "btn btn-outline-dark" %>
   </div>
 <% end %>
