@@ -1,0 +1,39 @@
+<div class="text-center">
+  <p>
+    <%= gravatar_tag @user.email, :size => 200, :html => { :class => "img-thumbnail rounded-circle" } %>
+  </p>
+
+  <p>
+    <strong>Name:</strong>
+    <%= "#{@user.first_name} #{@user.last_name}" %>
+  </p>
+
+  <p>
+    <strong>Location:</strong>
+    <%= @user.location %>
+  </p>
+
+  <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-dark" %>
+  <!-- <%= link_to 'Back', users_path, class: "btn btn-outline-dark" %> -->
+
+<h4 class="text-info mt-5"><%= "#{@user.first_name}\'s posts" %></h4>
+</div>
+
+<div class="card-columns">
+  <% @user.posts.each do |post| %>
+  <div class="card">
+    <% if post.image_path %>
+    <img class="card-img-top" src="<%= post.image_path%>" alt="image">
+    <% end %>
+    <div class="card-body">
+      <!-- <h4 class="card-title">Title</h4> -->
+      <p class="card-text"><%= post.body %></p>
+    </div>
+    <div class="card-footer">
+      <%= link_to 'Show', post %>
+      <%= link_to 'Edit', edit_post_path(post) %>
+      <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
+  </div>
+  <% end %>
+</div>

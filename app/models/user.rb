@@ -7,4 +7,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :posts, dependent: :destroy
+
+  validates :first_name, :last_name, :location, presence: true
+
+  # def self.name(user)
+  #   "#{user.first_name.capitalize} #{user.last_name.capitalize}"
+  # end
 end

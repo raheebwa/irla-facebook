@@ -8,11 +8,12 @@
 
 require 'faker'
 
-    User.create([{email: "ramar@email.com", password: "password", password_confirmation: "password"}, 
-        {email: "israel@email.com", password: "password", password_confirmation: "password"}])
+    User.create([{email: "raaheebwa@gmail.com", first_name: "Aheebwa",
+         last_name: "Ramadhan", location: "Uganda", password: "password", password_confirmation: "password"}, 
+        {email: "israellaguan@gmail.com", first_name: "Israel", last_name: "Laguan", location: "Columbia" , password: "password", password_confirmation: "password"}])
 
     User.all.each do |user|
         5.times do 
-            Post.create(user_id: user.id, body: Faker::Lorem.sentence )
+            Post.create(user_id: user.id, body: Faker::Lorem.sentence, image_path: Faker::LoremPixel.image(size: "640x480") )
         end
     end
