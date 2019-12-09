@@ -7,10 +7,11 @@
    <% @posts.each do |post| %>
     <div class="card">
       <div class="card-header">
-        <p><%= link_to "by #{post.user.first_name} #{post.user.last_name}", users_url(post.user) %></p>
-        <small class="float-right">
-          <%= post.updated_at.to_time.strftime('%B %e at %l:%M %p') %>
-        </small>
+        <p><%= link_to "#{post.user.first_name} #{post.user.last_name}", users_url(post.user) %> <small
+            class="float-right">
+            <%= post.updated_at.to_time.strftime('%B %e at %l:%M %p') %>
+          </small></p>
+        
       </div>
       <% if post.image_path %>
         <img class="card-img-top" src="<%= post.image_path%>" alt="image">
@@ -20,9 +21,10 @@
         <p class="card-text"><%= post.body %></p>
       </div>
       <div class="card-footer">
-      <%= link_to 'Show', post %>
-      <%= link_to 'Edit', edit_post_path(post) %>
-      <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to 'Show', post, class: "btn btn-sm btn-outline-info" %>
+      <%= link_to 'Edit', edit_post_path(post), class: "btn btn-sm btn-outline-info" %>
+      <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-outline-info" %>
+      <%= link_to "Like", '#', class: "btn btn-sm btn-disabled" %>
     </div>
   </div>
    <% end %>

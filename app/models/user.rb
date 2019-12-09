@@ -8,7 +8,9 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :likes, dependent: :destroy, as: :likeable
+
+  has_many :likes
+  # has_many :liked_posts, through: :likes, source: :post
 
   validates :first_name, :last_name, :location, presence: true
 

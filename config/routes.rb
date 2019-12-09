@@ -4,11 +4,18 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     passwords: 'users/passwords'
   }
-  resources :users
+  
+  # posts
   resources :posts
-  resource :home, controller: :home, only: [:index]
+
+  # users
+  resources :users, only: [:index, :show]
+
+  # likes
+  resources :likes, only: [:create, :destroy]
+
+  # comments
+  resources :comments, only: [:create]
+  
   root to: 'posts#index'
-  # root to: 'home#index'
-  get 'home/index'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
