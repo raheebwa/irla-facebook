@@ -62,10 +62,11 @@ class PostsController < ApplicationController
   end
 
   def like_post
-    @post.likes.build(user_id: params[:user_id], post_id: params[:id]).save
-    respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'You liked a post!.' }
-      format.js { render inline: 'location.reload();' }
+    current_user.likes.build(post_id: @post.id)
+    if current_user.save
+      redirect_back fallback_location: root_path, notice: 'You liked a comment!.'
+    else
+      redirect_to root_path, alert: 'You already liked this post'
     end
   end
 
@@ -99,7 +100,7 @@ class PostsController < ApplicationController
   end
 
   def comment_params
-    params[:comment] = params if params[:comment].nil? 
+    params[:comment] = params if params[:comment].nil?
     params.require(:comment).permit(:body, :post_id, :user_id)
   end
 end

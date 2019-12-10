@@ -7,7 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require 'faker'
-    User.create([{email: "raaheebwa@gmail.com", first_name: "Aheebwa",
+    
+User.create([{email: "raaheebwa@gmail.com", first_name: "Aheebwa",
          last_name: "Ramadhan", location: "Uganda", password: "password", password_confirmation: "password"}, 
         {email: "israellaguan@gmail.com", first_name: "Israel", last_name: "Laguan", location: "Colombia" , password: "password", password_confirmation: "password"}])
 
