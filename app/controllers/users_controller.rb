@@ -22,9 +22,20 @@ class UsersController < ApplicationController
   def add_friend
     friend = current_user.friendships.build(friend_id: params[:id], acepted: false)
     if friend.save
-      redirect_back fallback_location: @user, notice: 'You requested a frienship!'
+      redirect_back fallback_location: current_user, notice: 'You requested a frienship!'
     else
-      redirect_to @user, alert: 'You already are friend!'
+      redirect_to current_user, alert: 'You already are friend!'
+    end
+  end
+
+  def confirm_friend
+    p '_____________'
+    p params[:id]
+    friend = User.find(params[:id])
+    if current_user.confirm_friend(friend)
+      redirect_back fallback_location: current_user, notice: 'You acepted a frienship!'
+    else
+      redirect_to current_user, alert: 'You can not accept this friend!'
     end
   end
 
