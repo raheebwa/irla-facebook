@@ -56,9 +56,6 @@
           <li class="list-group-item">
           <%= gravatar_tag comment.user.email, :size => 28, :html => { :class => "img rounded-circle" } %>
           <strong><%= "#{comment.user.first_name} #{comment.user.last_name}" %></strong><br>
-          <% if comment.image_path %>
-            <img class="card-img-top" src="<%= comment.image_path%>" alt="image">
-          <% end %>
           <%= comment.body%>
           <div class="float-right">
             <%= button_to like_comment_url(user_id: current_user.id, id: @post.id), class: 'btn round card-link' do%>
