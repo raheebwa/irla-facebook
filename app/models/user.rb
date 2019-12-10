@@ -24,7 +24,7 @@ class User < ApplicationRecord
       user.first_name = 'Mr '
       user.last_name = auth.info.name
       user.location = 'Unknown'
-      # If you are using confirmable and the provider(s) you use validate emails, 
+      # If you are using confirmable and the provider(s) you use validate emails,
       # uncomment the line below to skip the confirmation emails.
       # user.skip_confirmation!
     end
