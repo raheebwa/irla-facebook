@@ -1,8 +1,22 @@
 Rails.application.routes.draw do
-  devise_for :users
-  resources :users
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations',
+    passwords: 'users/passwords'
+  }
+  
+  # posts
   resources :posts
-  resource :home, controller: :home, only: [:index]
+
+  # users
+  resources :users, only: [:index, :show]
+
+  # likes
+  resources :likes, only: [:create, :destroy]
+
+  # comments
+  resources :comments, only: [:create]
+  
   root to: 'posts#index'
   # root to: 'home#index'
   get 'home/index'
