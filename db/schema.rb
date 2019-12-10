@@ -25,12 +25,13 @@ ActiveRecord::Schema.define(version: 2019_12_05_215108) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "likes", force: :cascade do |t|
-    t.bigint "post_id"
-    t.bigint "user_id"
+  create_table "likes", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_likes_on_post_id"
+    t.index ["user_id", "post_id"], name: "index_likes_on_user_id_and_post_id", unique: true
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
