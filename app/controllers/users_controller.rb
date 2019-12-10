@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show]
+  before_action :set_user, only: %i[show edit]
 
   # GET /users
   # GET /users.json
@@ -12,6 +12,9 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show; end
+
+  # GET /users/1/edit
+  def edit; end
 
   private
 
