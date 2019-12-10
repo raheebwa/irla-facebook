@@ -24,10 +24,10 @@
 
   </div>
 
-  <% if @friends.count > 0  %>
+  <% if @user.friends.count > 0  %>
     <div class="list-group">
     <h3>Friends</h3>
-      <% @friends.each do |friend| %>
+      <% @user.friends.each do |friend| %>
         <% if friend != nil %>
           <a href="/users/<%= friend.id  %>" class= "list-group-item list-group-item-action">
             <%= gravatar_tag  friend.email, :size => 40, :html => { :class => "img-thumbnail rounded-circle" } %>
@@ -40,7 +40,7 @@
 
   <h4 class="text-info mt-5"><%= "#{@user.first_name}\'s posts" %></h4>
   <div class="card-columns">
-    <% @user.posts.each do |post| %>
+    <% @posts.each do |post| %>
     <div class="card">
       <% if post.image_path %>
         <%= link_to post do %>

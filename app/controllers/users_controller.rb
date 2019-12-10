@@ -12,8 +12,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @friends = @user.friends
-    @friends
+    @posts = @user.posts.order(updated_at: :desc)
+    @posts
   end
 
   # GET /users/1/edit
