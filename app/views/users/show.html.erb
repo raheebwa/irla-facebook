@@ -1,44 +1,60 @@
 <div class="container py-4">
-<div class="text-center">
-  <p>
-    <%= gravatar_tag @user.email, :size => 200, :html => { :class => "img-thumbnail rounded-circle" } %>
-  </p>
+  <div class="text-center">
+    <p>
+      <%= gravatar_tag @user.email, :size => 200, :html => { :class => "img-thumbnail rounded-circle" } %>
+    </p>
 
-  <p>
-    <strong>Name:</strong>
-    <%= "#{@user.first_name} #{@user.last_name}" %>
-  </p>
+    <p>
+      <strong>Name:</strong>
+      <%= "#{@user.first_name} #{@user.last_name}" %>
+    </p>
 
-  <p>
-    <strong>Location:</strong>
-    <%= @user.location %>
-  </p>
+    <p>
+      <strong>Location:</strong>
+      <%= @user.location %>
+    </p>
 
-  <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-dark" %>
-  <% if current_user.id != @user.id %>
-    <%= button_to 'Request friend', add_friend_path(id: @user.id), class: "btn btn-dark" %>
-  <% end %>
-  <!-- <%= link_to 'Back', users_path, class: "btn btn-outline-dark" %> -->
-
-<h4 class="text-info mt-5"><%= "#{@user.first_name}\'s posts" %></h4>
-</div>
-
-<div class="card-columns">
-  <% @user.posts.each do |post| %>
-  <div class="card">
-    <% if post.image_path %>
-    <img class="card-img-top" src="<%= post.image_path%>" alt="image">
+    <% if current_user.id == @user.id %>
+        <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-dark" %>
     <% end %>
-    <div class="card-body">
-      <!-- <h4 class="card-title">Title</h4> -->
-      <p class="card-text"><%= post.body %></p>
-    </div>
-    <div class="card-footer">
-      <%= link_to 'Show', post %>
-      <%= link_to 'Edit', edit_post_path(post) %>
-      <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
-    </div>
+    <% if current_user.id != @user.id && current_user.friend?(@user) == false %>
+      <%= button_to 'Request friend', add_friend_path(id: @user.id), class: "btn btn-dark" %>
+    <% end %>
+    <!-- <%= link_to 'Back', users_path, class: "btn btn-outline-dark" %> -->
+
   </div>
+
+  <% if @friends.count > 0  %>
+    <div class="list-group">
+    <h3>Friends</h3>
+      <% @friends.each do |friend| %>
+        <% if friend != nil %>
+          <a href="/users/<%= friend.id  %>" class= "list-group-item list-group-item-action">
+            <%= gravatar_tag  friend.email, :size => 40, :html => { :class => "img-thumbnail rounded-circle" } %>
+            <%= "#{ friend.first_name} #{friend.last_name}" %>
+          </a> 
+        <% end %>
+      <% end %>
+    </div>
   <% end %>
-</div>
+
+  <h4 class="text-info mt-5"><%= "#{@user.first_name}\'s posts" %></h4>
+  <div class="card-columns">
+    <% @user.posts.each do |post| %>
+    <div class="card">
+      <% if post.image_path %>
+      <img class="card-img-top" src="<%= post.image_path%>" alt="image">
+      <% end %>
+      <div class="card-body">
+        <!-- <h4 class="card-title">Title</h4> -->
+        <p class="card-text"><%= post.body %></p>
+      </div>
+      <div class="card-footer">
+        <%= link_to 'Show', post %>
+        <%= link_to 'Edit', edit_post_path(post) %>
+        <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
+    </div>
+    <% end %>
+  </div>
 </div>

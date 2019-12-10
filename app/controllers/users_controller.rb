@@ -11,7 +11,10 @@ class UsersController < ApplicationController
 
   # GET /users/1
   # GET /users/1.json
-  def show; end
+  def show
+    @friends = @user.friends
+    @friends
+  end
 
   # GET /users/1/edit
   def edit; end
