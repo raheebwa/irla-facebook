@@ -1,6 +1,18 @@
+<div class="container py-4">
 <h1>Editing Post</h1>
+<% if @post.errors.any? %>
+    <div id="error_explanation">
+    <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
 
+    <ul>
+    <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+    <% end %>
+    </ul>
+    </div>
+<% end %>
 <%= render 'form', post: @post %>
 
 <%= link_to 'Show', @post %> |
 <%= link_to 'Back', posts_path %>
+</div>

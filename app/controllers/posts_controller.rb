@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[show edit update destroy]
+  before_action :set_post, only: %i[show edit update destroy like_comment like_post add_comment]
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.all.order(updated_at: :desc)
   end
 
   # GET /posts/1
@@ -61,6 +61,31 @@ class PostsController < ApplicationController
     end
   end
 
+  def like_post
+    current_user.likes.build(post_id: @post.id)
+    if current_user.save
+      redirect_back fallback_location: root_path, notice: 'You liked a comment!.'
+    else
+      redirect_to root_path, alert: 'You already liked this post'
+    end
+  end
+
+  def like_comment
+    @post.likes.build(user_id: params[:user_id], comment_id: params[:comment_id]).save
+    respond_to do |format|
+      format.html { redirect_to posts_url, notice: 'You liked a comment!.' }
+      format.js { render inline: 'location.reload();' }
+    end
+  end
+
+  def add_comment
+    @post.comments.build(comment_params).save
+    respond_to do |format|
+      format.html { redirect_to posts_url, notice: 'You added a comment!.' }
+      format.js { render inline: 'location.reload();' }
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -70,6 +95,12 @@ class PostsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def post_params
-    params.require(:post).permit(:user_id, :body)
+    params[:post] = params if params[:post].nil?
+    params.require(:post).permit(:user_id, :body, :image_path)
+  end
+
+  def comment_params
+    params[:comment] = params if params[:comment].nil?
+    params.require(:comment).permit(:body, :post_id, :user_id)
   end
 end
