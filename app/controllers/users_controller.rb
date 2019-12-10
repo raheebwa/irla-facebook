@@ -16,6 +16,15 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit; end
 
+  def add_friend
+    friend = current_user.friendships.build(friend_id: params[:id], acepted: false)
+    if friend.save
+      redirect_back fallback_location: @user, notice: 'You requested a frienship!'
+    else
+      redirect_to @user, alert: 'You already are friend!'
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   post 'like_comment', to: 'posts#like_comment', as: "like_comment"
   post 'like_post', to: 'posts#like_post', as: "like_post"
   post 'add_comment', to: 'posts#add_comment', as: "add_comment"
+  post 'add_friend', to: 'users#add_friend', as: "add_friend"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
