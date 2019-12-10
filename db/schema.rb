@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2019_12_06_160002) do
     t.bigint "post_id"
     t.bigint "user_id"
     t.text "body"
+    t.string "image_path"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
@@ -43,8 +44,8 @@ ActiveRecord::Schema.define(version: 2019_12_06_160002) do
     t.string "likeable_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_likes_on_comment_id"
     t.index ["post_id"], name: "index_likes_on_post_id"
-    t.index ["user_id", "post_id"], name: "index_likes_on_user_id_and_post_id", unique: true
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 

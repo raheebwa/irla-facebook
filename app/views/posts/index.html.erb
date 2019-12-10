@@ -3,12 +3,12 @@
     <div class="card">
       <%= link_to user_path(current_user), class: "card-body" do%>
           <div class="h5"><%= "#{current_user.first_name} #{current_user.last_name}" %></div>
-          <div class="h7 text-muted"><%= "#{current_user.email}" %></div>          
+          <div class="h7 text-muted"><%= current_user.email %></div>          
       <% end %>
       <ul class="list-group list-group-flush">
           <li class="list-group-item">
               <div class="h6 text-muted">Friends</div>
-              <div class="h5">5.2342</div>
+              <div class="h5"><%= current_user.friends.count %></div>
           </li>
           <li class="list-group-item">
             <%= link_to  "Edit Profile", edit_user_path(current_user)%>
