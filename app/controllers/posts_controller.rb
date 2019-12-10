@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[show edit update destroy like_comment like_post]
+  before_action :set_post, only: %i[show edit update destroy like_comment like_post add_comment]
 
   # GET /posts
   # GET /posts.json
@@ -63,7 +63,6 @@ class PostsController < ApplicationController
 
   def like_post
     @post.likes.build(user_id: params[:user_id], post_id: params[:id]).save
-    p params[:user_id]
     respond_to do |format|
       format.html { redirect_to posts_url, notice: 'You liked a post!.' }
       format.js { render inline: 'location.reload();' }
@@ -78,8 +77,8 @@ class PostsController < ApplicationController
     end
   end
 
-  def create_comment
-    @post.comments.build(body: params[:body], image_path: params[:image_path], user_id: params[:user_id]).save
+  def add_comment
+    @post.comments.build(comment_params).save
     respond_to do |format|
       format.html { redirect_to posts_url, notice: 'You added a comment!.' }
       format.js { render inline: 'location.reload();' }
@@ -97,5 +96,10 @@ class PostsController < ApplicationController
   def post_params
     params[:post] = params if params[:post].nil?
     params.require(:post).permit(:user_id, :body, :image_path)
+  end
+
+  def comment_params
+    params[:comment] = params if params[:comment].nil? 
+    params.require(:comment).permit(:body, :post_id, :user_id)
   end
 end
