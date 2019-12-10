@@ -38,6 +38,21 @@
     </div>
   <% end %>
 
+  <% if current_user.id == @user.id && @user.friend_requests.count > 0  %>
+    <div class="list-group">
+    <h3>Pending Friends</h3>
+      <% @user.friend_requests.each do |friend| %>
+        <% if friend != nil %>
+          <a href="/users/<%= friend.id  %>" class= "list-group-item list-group-item-action d-flex">
+            <%= button_to 'Confirm', class: "float-right" %>
+            <%= gravatar_tag  friend.email, :size => 40, :html => { :class => "img-thumbnail rounded-circle" } %>
+            <%= "#{ friend.first_name} #{friend.last_name} at #{friend.created_at.to_time.strftime('%B %e at %l:%M %p')} " %>
+          </a> 
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+
   <h4 class="text-info mt-5"><%= "#{@user.first_name}\'s posts" %></h4>
   <div class="card-columns">
     <% @posts.each do |post| %>
