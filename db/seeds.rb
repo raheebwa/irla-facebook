@@ -15,7 +15,8 @@ require 'faker'
     User.all.each do |user|
         5.times do 
             post = Post.create(user_id: user.id, body: Faker::ChuckNorris.fact, image_path: Faker::LoremPixel.image(size: "640x480") )
-            post.likes.create(user_id: user.id)
-            post.comments.create(user_id: user.id, body: Faker::Hacker.say_something_smart, image_path: Faker::LoremPixel.image(size: "480x260") )
+            post.likes.build(user_id: user.id, post_id: post.id).save
+            comment = post.comments.create(user_id: user.id, body: Faker::Hacker.say_something_smart, image_path: Faker::LoremPixel.image(size: "480x260") )
+            comment.likes.build(user_id: user.id, comment_id: comment.id).save
         end
     end
