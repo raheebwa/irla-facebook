@@ -1,20 +1,28 @@
 <p class="lead">Latest Posts</p>
 <%= link_to 'Create New Post', new_post_path, class: "btn btn-block btn-outline-dark my-3" %>
 
+<h1>Posts</h1>
+
 <div class="card-columns">
    <% @posts.each do |post| %>
-  <div class="card">
-    <% if post.image_path %>
-      <img class="card-img-top" src="<%= post.image_path%>" alt="image">
-    <% end %>
-    <div class="card-body">
-      <!-- <h4 class="card-title">Title</h4> -->
-      <p class="card-text"><%= post.body %></p>
-    </div>
-    <div class="card-footer">
-<%= link_to 'Show', post %>
-<%= link_to 'Edit', edit_post_path(post) %>
-<%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <div class="card">
+      <div class="card-header">
+        <p><%= link_to "by #{post.user.first_name} #{post.user.last_name}", users_url(post.user) %></p>
+        <small class="float-right">
+          <%= post.updated_at.to_time.strftime('%B %e at %l:%M %p') %>
+        </small>
+      </div>
+      <% if post.image_path %>
+        <img class="card-img-top" src="<%= post.image_path%>" alt="image">
+      <% end %>
+      <div class="card-body">
+        <!-- <h4 class="card-title">Title</h4> -->
+        <p class="card-text"><%= post.body %></p>
+      </div>
+      <div class="card-footer">
+      <%= link_to 'Show', post %>
+      <%= link_to 'Edit', edit_post_path(post) %>
+      <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
     </div>
   </div>
    <% end %>
