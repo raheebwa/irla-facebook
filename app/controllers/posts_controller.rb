@@ -78,6 +78,14 @@ class PostsController < ApplicationController
     end
   end
 
+  def create_comment
+    @post.comments.build(body: params[:body], image_path: params[:image_path], user_id: params[:user_id]).save
+    respond_to do |format|
+      format.html { redirect_to posts_url, notice: 'You added a comment!.' }
+      format.js { render inline: 'location.reload();' }
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
