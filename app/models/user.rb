@@ -25,6 +25,12 @@ class User < ApplicationRecord
     friendships.map { |friendship| friendship.friend unless friendship.acepted }.compact
   end
 
+  def unnacepted_friend_requests
+    friends = []
+    inverse_friendships.each { |request| friends << request.user unless request.acepted }
+    friends
+  end
+
   # Users who have requested to be friends
   def friend_requests
     inverse_friendships.map { |friendship| friendship.user unless friendship.acepted }.compact
