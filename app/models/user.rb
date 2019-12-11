@@ -52,4 +52,19 @@ class User < ApplicationRecord
   def search_friends(current_user)
     User.all.map { |user| user unless friend?(user) || current_user == user }.compact
   end
+
+  def self.from_omniauth(auth)
+    password = Devise.friendly_token[0, 20]
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = password
+      user.password_confirmation = password
+      user.first_name = 'Mr '
+      user.last_name = auth.info.name
+      user.location = 'Unknown'
+      # If you are using confirmable and the provider(s) you use validate emails,
+      # uncomment the line below to skip the confirmation emails.
+      # user.skip_confirmation!
+    end
+  end
 end

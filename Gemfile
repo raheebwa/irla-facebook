@@ -31,6 +31,7 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'dotenv-rails', groups: [:development, :test]
 #Auth
 gem 'devise'
 gem 'omniauth-facebook'
@@ -51,7 +52,6 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'webdrivers', '~> 4.0'
-  gem 'dotenv-rails'
 end
 
 group :development do
