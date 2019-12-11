@@ -39,13 +39,13 @@
       </p>
       <div class="d-flex">
         <%= button_to like_post_url(user_id: current_user.id, id: @post.id), class: 'btn round card-link' do%>
-            👍
-            <sup class="card-link"><%= @post.likes.from_post(@post.id).count %></sup>
+            <%= image_tag("like.png", size: 28) %>
+            <sup class="badge badge-primary"><%= @post.likes.from_post(@post.id).count %></sup>
           <% end %>
 
           <%= link_to @post, class: "btn round card-link" do %>
-            &#128172;
-            <sup class="card-link"><%= @post.comments.count %></sup>
+            <%= image_tag("comments.png", size: 28, alt: "Comments") %>
+            <sup class="badge badge-primary"><%= @post.comments.count %></sup>
           <% end %>
       </div>
       <div>
@@ -74,8 +74,8 @@
           <strong><%= "#{comment.user.first_name} #{comment.user.last_name}" %></strong><br>
           <%= comment.body%>
           <div class="float-right">
-            <%= button_to like_comment_url(user_id: current_user.id, id: @post.id), class: 'btn round card-link' do%>
-              👍
+            <%= button_to like_comment_url(user_id: current_user.id, comment_id: comment.id ,id: @post.id), class: 'btn round card-link' do%>
+              <%= image_tag("like.png", size: 20) %>
               <sup class="card-link"><%= @post.likes.from_post(@post.id).count %></sup>
             <% end %>
           </div>
