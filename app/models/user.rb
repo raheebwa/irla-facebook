@@ -16,8 +16,10 @@ class User < ApplicationRecord
   validates :first_name, :last_name, :location, presence: true
 
   def friends
-    friends_array = friendships.map { |friendship| friendship.friend if friendship.acepted }
-    friends_array.compact + inverse_friendships.map { |friendship| friendship.user if friendship.acepted }
+    friends = []
+    friendships.each { |friendship| friends << friendship.friend if friendship.acepted }
+    inverse_friendships.each { |friendship| friends << friendship.user if friendship.acepted }
+    friends.compact
   end
 
   # Users who have yet to confirme friend requests
@@ -44,5 +46,9 @@ class User < ApplicationRecord
 
   def friend?(user)
     friends.include?(user)
+  end
+
+  def search_friends(current_user)
+    User.all.map { |user| user unless friend?(user) || current_user == user }.compact
   end
 end

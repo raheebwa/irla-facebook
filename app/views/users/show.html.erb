@@ -20,8 +20,6 @@
     <% if current_user.id != @user.id && current_user.friend?(@user) == false %>
       <%= button_to 'Request friend', add_friend_path(id: @user.id), class: "btn btn-dark" %>
     <% end %>
-    <!-- <%= link_to 'Back', users_path, class: "btn btn-outline-dark" %> -->
-
   </div>
 
   <% if @user.friends.count > 0  %>

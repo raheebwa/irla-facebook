@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show edit]
+  before_action :set_user, only: %i[show edit search_friends]
 
   # GET /users
   # GET /users.json
@@ -19,6 +19,11 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit; end
 
+  def search_friends
+    @per_confirm_friends = @user.friend_requests.compact
+    @per_request_friends = @user.search_friends(@user)
+  end
+
   def add_friend
     friend = current_user.friendships.build(friend_id: params[:id], acepted: false)
     if friend.save
@@ -29,8 +34,6 @@ class UsersController < ApplicationController
   end
 
   def confirm_friend
-    p '_____________'
-    p params[:id]
     friend = User.find(params[:id])
     if current_user.confirm_friend(friend)
       redirect_back fallback_location: current_user, notice: 'You acepted a frienship!'
