@@ -10,5 +10,5 @@ class Like < ApplicationRecord
   # validations
   validates :user_id, presence: true
   validates :post_id, presence: true
-  validates :user, uniqueness: { scope: :post}
+  validates :user, uniqueness: { scope: :post }
 end
