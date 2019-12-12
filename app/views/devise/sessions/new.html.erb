@@ -2,10 +2,9 @@
   <div class="row">
     <div class="col-md-8">
       <img src="https://source.unsplash.com/random/800x450" alt="image of the day" class="img-fluid">
+      <p class="lead">Connect with friends and the world around</p>
     </div>
     <div class="col-md-4">
-      <h2>Log in</h2>
-
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="form-group">
         <%= f.label :email %><br />
@@ -32,5 +31,6 @@
       <%= render "devise/shared/links" %>
 
     </div>
+    <% link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
   </div>
 </div>

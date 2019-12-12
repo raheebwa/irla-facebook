@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-md-3">
+  </div>
+  <div class="col-md-6 gedf-main">
+  <div class="card gedf-card">
+    <div class="card-header">
+        <h3>Respond to Your Friend Requests</h3>
+    </div>
+    <div class="card-body list-group">
+        <% @per_confirm_friends.each do |request| %>
+            <div class="list-group-item list-group-item-action">
+                <a href="/users/<%= request.id  %>" class= "d-flex">
+                    <%= gravatar_tag  request.email, :size => 40, :html => { :class => "img rounded-circle" } %> 
+                    <p class="mx-3">
+                        <%= "#{ request.first_name} #{request.last_name} on #{request.created_at.to_time.strftime('%B %e at %l:%M %p')}" %>
+                    </p>
+                </a>
+                <%= button_to 'Confirm', confirm_friend_url(id: request.id), class: "btn btn-warning float-right" %>
+            </div>
+        <% end %>
+    </div>
+  </div>
+  <div class="card gedf-card">
+  <div class="card-header">
+        <h3>People You May Know</h3>
+    </div>
+    <div class="card-body list-group">
+        <% @per_request_friends.each do |user| %>
+            <div class="list-group-item list-group-item-action">
+                <a href="/users/<%= user.id  %>" class= "d-flex">
+                    <%= gravatar_tag  user.email, :size => 40, :html => { :class => "img rounded-circle" } %>
+                    <p class="mx-3">
+                        <%= "#{ user.first_name} #{user.last_name} on #{user.created_at.to_time.strftime('%B %e at %l:%M %p')} " %>
+                    </p>
+                </a>
+                <%= button_to '+ Add friend', add_friend_path(id: user.id), class: "btn btn-success float-right" %>
+            </div>
+        <% end %>
+    </div>
+  </div>
+  </div>
+  <div class="col-md-3">
+  </div>
+</div>
