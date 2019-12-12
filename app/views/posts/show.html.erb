@@ -56,9 +56,6 @@
         <div class="form-group">
           <%= form.text_area :body, class: "form-control", placeholder: "Comment:" %>
         </div>
-        <div class="form-group">
-          <%= form.text_field :image_path, class: "form-control", placeholder: "Add image:" %>
-        </div>
         <div class="actions">
           <%= form.submit "Comment", class: "float-right btn btn-dark" %>
         </div>
@@ -73,12 +70,6 @@
           <%= gravatar_tag comment.user.email, :size => 28, :html => { :class => "img rounded-circle" } %>
           <strong><%= "#{comment.user.first_name} #{comment.user.last_name}" %></strong><br>
           <%= comment.body%>
-          <div class="float-right">
-            <%= button_to like_comment_url(user_id: current_user.id, id: @post.id), class: 'btn round card-link' do%>
-              👍
-              <sup class="card-link"><%= @post.likes.from_post(@post.id).count %></sup>
-            <% end %>
-          </div>
           </li>
         <% end %>
       </ul> 
