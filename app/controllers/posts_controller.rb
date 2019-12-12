@@ -62,8 +62,8 @@ class PostsController < ApplicationController
   end
 
   def like_post
-    current_user.likes.build(post_id: @post.id)
-    if current_user.save
+    like = current_user.likes.build(post_id: @post.id)
+    if like.save
       redirect_back fallback_location: root_path, notice: 'You liked a comment!.'
     else
       redirect_to root_path, alert: 'You already liked this post'

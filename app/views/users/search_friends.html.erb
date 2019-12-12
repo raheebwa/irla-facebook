@@ -33,7 +33,7 @@
                         <%= "#{ user.first_name} #{user.last_name} on #{user.created_at.to_time.strftime('%B %e at %l:%M %p')} " %>
                     </p>
                 </a>
-                <%= button_to '+ Add friend', confirm_friend_url(id: user.id), class: "btn btn-success float-right" %>
+                <%= button_to '+ Add friend', add_friend_path(id: user.id), class: "btn btn-success float-right" %>
             </div>
         <% end %>
     </div>

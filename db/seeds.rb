@@ -15,7 +15,7 @@ User.create([{email: "raaheebwa@gmail.com", first_name: "Aheebwa",
     User.all.each do |user|
         5.times do 
             post = Post.create(user_id: user.id, body: Faker::ChuckNorris.fact, image_path: Faker::LoremPixel.image(size: "640x480") )
-            post.likes.build(user_id: user.id, post_id: post.id).save
+
             3.times{post.comments.create(user_id: user.id, body: Faker::Hacker.say_something_smart)}
         end
     end

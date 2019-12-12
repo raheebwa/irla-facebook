@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :likes, dependent: :destroy
+  has_many :likes, dependent: :destroy, as: :likeable
 
   has_many :friendships
   has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
@@ -62,9 +62,6 @@ class User < ApplicationRecord
       user.first_name = 'Mr '
       user.last_name = auth.info.name
       user.location = 'Unknown'
-      # If you are using confirmable and the provider(s) you use validate emails,
-      # uncomment the line below to skip the confirmation emails.
-      # user.skip_confirmation!
     end
   end
 end
