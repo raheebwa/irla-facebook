@@ -12,11 +12,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    is_requested = Friendship.where('friend_id = ? AND user_id = ?', current_user.id, @user.id).none?
-    not_current = current_user.id != @user.id
-    not_friend = current_user.friend?(@user) == false
     @posts = @user.posts.order(updated_at: :desc)
-    @can_request = is_requested && not_current && not_friend
+    @can_request = can_request
   end
 
   # GET /users/1/edit
@@ -25,6 +22,7 @@ class UsersController < ApplicationController
   def search_friends
     @per_confirm_friends = @user.friend_requests.compact
     @per_request_friends = @user.search_friends(@user)
+    @can_request = can_request
   end
 
   def add_friend
@@ -52,6 +50,13 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def can_request
+    is_requested = Friendship.where('friend_id = ? AND user_id = ?', current_user.id, @user.id).none?
+    not_current = current_user.id != @user.id
+    not_friend = current_user.friend?(@user) == false
+    is_requested && not_current && not_friend
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_user

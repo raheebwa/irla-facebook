@@ -33,7 +33,11 @@
                         <%= "#{ user.first_name} #{user.last_name} on #{user.created_at.to_time.strftime('%B %e at %l:%M %p')} " %>
                     </p>
                 </a>
-                <%= button_to '+ Add friend', add_friend_path(id: user.id), class: "btn btn-success float-right" %>
+                <% if @can_request %>
+                    <%= button_to '+ Add friend', add_friend_path(id: user.id), class: "btn btn-success float-right"  %>
+                <% else %>
+                    <%= button_to '✔ Requested Sent', {}, class: "btn btn-light float-right disabled" %>
+                <% end %>
             </div>
         <% end %>
     </div>
