@@ -17,7 +17,7 @@
     <% if current_user.id == @user.id %>
         <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-dark" %>
     <% end %>
-    <% if current_user.id != @user.id && current_user.friend?(@user) == false %>
+    <% if @can_request %>
       <%= button_to 'Request friend', add_friend_path(id: @user.id), class: "btn btn-dark" %>
     <% end %>
   </div>

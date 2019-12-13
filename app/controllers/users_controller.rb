@@ -12,8 +12,11 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    is_requested = Friendship.where('friend_id = ? AND user_id = ?', current_user.id, @user.id).none?
+    not_current = current_user.id != @user.id
+    not_friend = current_user.friend?(@user) == false
     @posts = @user.posts.order(updated_at: :desc)
-    @posts
+    @can_request = is_requested && not_current && not_friend
   end
 
   # GET /users/1/edit
