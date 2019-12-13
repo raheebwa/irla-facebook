@@ -57,7 +57,7 @@
   <div class="card-columns">
     <% @posts.each do |post| %>
     <div class="card">
-      <% if post.image_path %>
+      <% if post.image_path.length > 0 %>
         <%= link_to post do %>
           <img class="card-img-top" src="<%= post.image_path%>" alt="image">
         <% end %>
