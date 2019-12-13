@@ -41,12 +41,12 @@
     <h3>Pending Friends</h3>
       <% @user.friend_requests.each do |friend| %>
         <% if friend != nil %>
-          <div class="d-flex">
-            <%= button_to 'Confirm', confirm_friend_url(id: friend.id), class: "float-right" %>
-            <a href="/users/<%= friend.id  %>" class= "list-group-item list-group-item-action d-flex">
+          <div class="list-group-item list-group-item-action">
+            <a href="/users/<%= friend.id  %>" class="d-flex">
               <%= gravatar_tag  friend.email, :size => 40, :html => { :class => "img-thumbnail rounded-circle" } %>
               <%= "#{ friend.first_name} #{friend.last_name} at #{friend.created_at.to_time.strftime('%B %e at %l:%M %p')} " %>
             </a>
+            <%= button_to 'Confirm', confirm_friend_url(id: friend.id), class: "btn btn-warning float-right" %>
           </div>
         <% end %>
       <% end %>
@@ -82,12 +82,12 @@
       </div>
       <div class="card-footer d-flex">
         <%= button_to like_post_url(user_id: current_user.id, id: post.id), class: 'btn round card-link' do%>
-            👍
+            Likes: <%= image_tag("like.png", size: 28) %>
             <sup class="card-link"><%= post.likes.from_post(post.id).count %></sup>
           <% end %>
 
           <%= link_to post, class: "btn round card-link" do %>
-            &#128172;
+            Comments: <%= image_tag("comments.png", size: 28, alt: "Comments") %>
             <sup class="card-link"><%= post.comments.count %></sup>
           <% end %>
       </div>
