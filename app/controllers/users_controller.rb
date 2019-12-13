@@ -31,6 +31,9 @@ class UsersController < ApplicationController
     else
       redirect_to current_user, alert: 'You already are friend!'
     end
+  rescue StandardError => e
+    print e
+    redirect_back fallback_location: current_user, alert: 'There was a problem requesting this!'
   end
 
   def confirm_friend
@@ -40,6 +43,9 @@ class UsersController < ApplicationController
     else
       redirect_to current_user, alert: 'You can not accept this friend!'
     end
+  rescue StandardError => e
+    print e
+    redirect_back fallback_location: current_user, alert: 'There was a problem requesting this!'
   end
 
   private
