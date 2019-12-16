@@ -52,10 +52,11 @@ class UsersController < ApplicationController
   private
 
   def can_request
-    is_requested = Friendship.where('friend_id = ? AND user_id = ?', current_user.id, @user.id).none?
+    i_did_not_requested = Friendship.where('friend_id = ? AND user_id = ?', current_user.id, @user.id).none?
+    friend_did_not_requested = Friendship.where('friend_id = ? AND user_id = ?', @user.id, current_user.id).none?
     not_current = current_user.id != @user.id
     not_friend = current_user.friend?(@user) == false
-    is_requested && not_current && not_friend
+    i_did_not_requested && friend_did_not_requested && not_current && not_friend
   end
 
   # Use callbacks to share common setup or constraints between actions.

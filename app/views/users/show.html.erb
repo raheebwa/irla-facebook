@@ -16,9 +16,12 @@
 
     <% if current_user.id == @user.id %>
         <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-dark" %>
-    <% end %>
-    <% if @can_request %>
-      <%= button_to 'Request friend', add_friend_path(id: @user.id), class: "btn btn-dark" %>
+    <% else %>
+      <% if @can_request %>
+        <%= button_to 'Request friend', add_friend_path(id: @user.id), class: "btn btn-dark" %>
+      <% else %>
+          <%= button_to '✔ Requested Sent', {}, class: "btn btn-light disabled" %>
+      <% end %>
     <% end %>
   </div>
 
