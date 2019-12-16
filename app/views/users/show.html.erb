@@ -27,7 +27,7 @@
         <% if @can_request %>
           <%= button_to 'Request friend', add_friend_path(id: @user.id), class: "btn btn-info" %>
         <% else %>
-            <%= button_to '✔ Request Sent', {}, class: "btn btn-light disabled" %>
+            <button class="btn btn-light disabled">✔ Request Sent</button>
         <% end %>
       <% end %>
     </div>
@@ -71,7 +71,7 @@
                     <% if @can_request %>
                       <%= button_to 'Request friend', add_friend_path(id: @user.id), class: "btn btn-info" %>
                     <% else %>
-                        <%= button_to '✔ Request Sent', {}, class: "btn btn-light disabled" %>
+                      <button class="btn btn-light disabled">✔ Request Sent</button>
                     <% end %>
                   <% end %>
                 <% end %>
