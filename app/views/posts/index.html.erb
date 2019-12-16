@@ -41,6 +41,7 @@
                 </div>
               <% end %>
               <div>
+                <% if current_user == post.user %>
                   <div class="dropdown">
                       <button class="btn dropdown-toggle" type="button" id="gedf-drop<%= post.id%>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           ⋮
@@ -51,6 +52,7 @@
                           <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, class:"dropdown-item" %>
                       </div>
                   </div>
+                <% end %>
               </div>
           </div>
       </div>
@@ -66,19 +68,16 @@
           </p>
       </div>
       <div class="card-footer d-flex">
-          
           <%= button_to like_post_url(user_id: current_user.id, id: post.id), class: 'btn round card-link', name: "Like" do%>
             <%= image_tag("like.png", size: 24, alt: "Likes") %>
             <sup class="badge badge-primary"><%= post.likes.from_post(post.id).count %></sup>
           <% end %>
-
           <%= link_to post, class: "btn round card-link" do %>
             <%= image_tag("comments.png", size: 24, alt: "Comments") %>
             <sup class="badge badge-primary"><%= post.comments.count %></sup>
           <% end %>
       </div>
     </div>
-
   <% end %>
 </div>
 

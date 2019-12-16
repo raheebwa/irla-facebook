@@ -2,7 +2,7 @@
 <div class="card gedf-card">
       <div class="card-header">
     <div class="d-flex justify-content-between align-items-center">
-              <%= link_to users_url(@post.user), class: "d-flex justify-content-between align-items-center" do%>
+              <%= link_to user_url(@post.user), class: "d-flex justify-content-between align-items-center" do%>
                 <div class="mr-2">
                     <%= gravatar_tag @post.user.email, :size => 45, :html => { :class => "img rounded-circle" } %>
                 </div>
@@ -16,6 +16,7 @@
                 </div>
               <% end %>
               <div>
+                <% if current_user == @post.user %>
                   <div class="dropdown">
                       <button class="btn dropdown-toggle" type="button" id="gedf-drop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           ⋮
@@ -25,7 +26,8 @@
                           <%= link_to '⚙ Edit', edit_post_path(@post), class: "dropdown-item" %>
                           <%= link_to '🚫 Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' }, class:"dropdown-item" %>
                       </div>
-                  </div>
+                  </div>                  
+                <% end %>
               </div>
           </div>
       </div>

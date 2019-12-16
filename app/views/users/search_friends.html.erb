@@ -7,16 +7,24 @@
         <h3>Respond to Your Friend Requests</h3>
     </div>
     <div class="card-body list-group">
-        <% @per_confirm_friends.each do |request| %>
-            <div class="list-group-item list-group-item-action">
-                <a href="/users/<%= request.id  %>" class= "d-flex">
-                    <%= gravatar_tag  request.email, :size => 40, :html => { :class => "img rounded-circle" } %> 
-                    <p class="mx-3">
-                        <%= "#{ request.first_name} #{request.last_name} on #{request.created_at.to_time.strftime('%B %e at %l:%M %p')}" %>
-                    </p>
-                </a>
-                <%= button_to 'Confirm', confirm_friend_url(id: request.id), class: "btn btn-warning float-right" %>
-            </div>
+        <% if @per_confirm_friends.count > 0 %>
+            <% @per_confirm_friends.each do |request| %>
+                <div class="list-group-item list-group-item-action">
+                    <a href="/users/<%= request.id  %>" class= "d-flex">
+                        <%= gravatar_tag  request.email, :size => 40, :html => { :class => "img rounded-circle" } %> 
+                        <p class="mx-3">
+                            <%= "#{ request.first_name} #{request.last_name} on #{request.created_at.to_time.strftime('%B %e at %l:%M %p')}" %>
+                        </p>
+                    </a>
+                    <%= button_to 'Confirm', confirm_friend_url(id: request.id), class: "btn btn-warning float-right" %>
+                </div>
+            <% end %> 
+        <% else %>
+            <h4>No more friend request! Go and talk with your friends!</h4>
+            <%= link_to posts_url do%>
+                <%= image_tag("bullhorn.png", size: 64, alt: "timeline") %>
+                Your timeline
+            <% end %>
         <% end %>
     </div>
   </div>
@@ -25,20 +33,24 @@
         <h3>People You May Know</h3>
     </div>
     <div class="card-body list-group">
-        <% @per_request_friends.each do |user| %>
-            <div class="list-group-item list-group-item-action">
-                <a href="/users/<%= user.id  %>" class= "d-flex">
-                    <%= gravatar_tag  user.email, :size => 40, :html => { :class => "img rounded-circle" } %>
-                    <p class="mx-3">
-                        <%= "#{ user.first_name} #{user.last_name} on #{user.created_at.to_time.strftime('%B %e at %l:%M %p')} " %>
-                    </p>
-                </a>
-                <% if @can_request %>
-                    <%= button_to '+ Add friend', add_friend_path(id: user.id), class: "btn btn-success float-right"  %>
-                <% else %>
-                    <%= button_to '✔ Requested Sent', {}, class: "btn btn-light float-right disabled" %>
-                <% end %>
-            </div>
+        <% if @per_request_friends.count > 0 %>
+            <% @per_request_friends.each do |user| %>
+                <div class="list-group-item list-group-item-action">
+                    <a href="/users/<%= user.id  %>" class= "d-flex">
+                        <%= gravatar_tag  user.email, :size => 40, :html => { :class => "img rounded-circle" } %>
+                        <p class="mx-3">
+                            <%= "#{ user.first_name} #{user.last_name} on #{user.created_at.to_time.strftime('%B %e at %l:%M %p')} " %>
+                        </p>
+                    </a>
+                    <% if @can_request %>
+                        <%= button_to '+ Add friend', add_friend_path(id: user.id), class: "btn btn-success float-right"  %>
+                    <% else %>
+                        <%= button_to '✔ Request Sent', {}, class: "btn btn-light float-right disabled" %>
+                    <% end %>
+                </div>
+            <% end %>
+        <% else %>
+            <h4>Invite Friends to our Platform!</h4>
         <% end %>
     </div>
   </div>
