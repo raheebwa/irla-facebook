@@ -29,34 +29,60 @@
   <p align="center">
     An impememnation of a social media site like facebook with most backend compatibility
     <br />
-    <a href="https://github.com/[github-user]/irla-facebook/blob/master/README.md"><strong>Explore the docs 📚</strong></a>
+    <a href="https://github.com/raheebwa/irla-facebook/blob/master/README.md"><strong>Explore the docs 📚</strong></a>
     <br />
     <br />
 	  🖊️
-    <a href="https://www.theodinproject.com">Assigment</a>
+    <a href="https://www.theodinproject.com/courses/ruby-on-rails/lessons/final-project">Assigment</a>
     🐛
-    <a href="https://github.com/[github-user]/irla-facebook/issues">Report Bug</a>
+    <a href="https://github.com/raheebwa/irla-facebook/issues">Report Bug</a>
     🙏
-    <a href="https://github.com/[github-user]/irla-facebook/issues">Request Feature</a>
+    <a href="https://github.com/raheebwa/irla-facebook/issues">Request Feature</a>
   </p>
 </p>
 
 # Live App on Heroku
 <a href="http://irla.herokuapp.com">Click here to see live App</a>
 
-# Validations
+## Validations
 
 Rubocop: 
 
 ![rubocop-validation](doc/rubocop.png)
 
-# Features
+RSpec: 
 
-* Using different databases for development (sqlite3) and production (postgres)
+![rspec-validation](doc/rspec.png)
+
+## Features
+
+* Sign In with Facebook
+
+![facebook](doc/facebook.png)
+
+* Protected routes
+
+![protected](doc/protected.png)
+
+* Basic Responsiveness
+
+![responsive](doc/responsive.png)
+
+* Timeline like index page
+
+* Like posts
+
+![like](doc/like.png)
+
+* Make comments
+
+![comment](doc/comment.png)
+
+* Using postgres databases for development and production (postgres)
 * Followed the tutorial
 * Tests made with [`RSpec`](https://relishapp.com/rspec/)
 
-# Built With
+## Built With
 
 * `ruby` v2.5.5
 * `rails` v5.2.3+
@@ -83,13 +109,13 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/[github-user]/irla-facebook.svg?style=flat-square
-[contributors-url]: https://github.com/[github-user]/irla-facebook/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/[github-user]/irla-facebook
-[forks-url]: https://github.com/[github-user]/irla-facebook/network/members
-[stars-shield]: https://img.shields.io/github/stars/[github-user]/irla-facebook
-[stars-url]: https://github.com/[github-user]/irla-facebook/stargazers
-[issues-shield]: https://img.shields.io/github/issues/[github-user]/irla-facebook
-[issues-url]: https://github.com/[github-user]/irla-facebook/issues
-[license-shield]: https://img.shields.io/github/license/[github-user]/irla-facebook
-[license-url]: https://github.com/[github-user]/irla-facebook/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/raheebwa/irla-facebook.svg?style=flat-square
+[contributors-url]: https://github.com/raheebwa/irla-facebook/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/raheebwa/irla-facebook
+[forks-url]: https://github.com/raheebwa/irla-facebook/network/members
+[stars-shield]: https://img.shields.io/github/stars/raheebwa/irla-facebook
+[stars-url]: https://github.com/raheebwa/irla-facebook/stargazers
+[issues-shield]: https://img.shields.io/github/issues/raheebwa/irla-facebook
+[issues-url]: https://github.com/raheebwa/irla-facebook/issues
+[license-shield]: https://img.shields.io/github/license/raheebwa/irla-facebook
+[license-url]: https://github.com/raheebwa/irla-facebook/blob/master/LICENSE.txt

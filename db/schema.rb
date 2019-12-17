@@ -37,15 +37,12 @@ ActiveRecord::Schema.define(version: 2019_12_10_223824) do
   end
 
   create_table "likes", id: false, force: :cascade do |t|
-    t.bigint "post_id"
-    t.bigint "user_id"
-    t.bigint "comment_id"
-    t.integer "likeable_id"
-    t.string "likeable_type"
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["comment_id"], name: "index_likes_on_comment_id"
     t.index ["post_id"], name: "index_likes_on_post_id"
+    t.index ["user_id", "post_id"], name: "index_likes_on_user_id_and_post_id", unique: true
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
@@ -79,7 +76,6 @@ ActiveRecord::Schema.define(version: 2019_12_10_223824) do
   add_foreign_key "comments", "users"
   add_foreign_key "friendships", "users"
   add_foreign_key "friendships", "users", column: "friend_id"
-  add_foreign_key "likes", "comments"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
   add_foreign_key "posts", "users"

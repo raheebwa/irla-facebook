@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @posts = @user.posts.order(updated_at: :desc)
-    @posts
+    @can_request = can_request
   end
 
   # GET /users/1/edit
@@ -22,6 +22,7 @@ class UsersController < ApplicationController
   def search_friends
     @per_confirm_friends = @user.friend_requests.compact
     @per_request_friends = @user.search_friends(@user)
+    @can_request = can_request
   end
 
   def add_friend
@@ -31,6 +32,9 @@ class UsersController < ApplicationController
     else
       redirect_to current_user, alert: 'You already are friend!'
     end
+  rescue StandardError => e
+    print e
+    redirect_back fallback_location: current_user, alert: 'There was a problem requesting this!'
   end
 
   def confirm_friend
@@ -40,9 +44,19 @@ class UsersController < ApplicationController
     else
       redirect_to current_user, alert: 'You can not accept this friend!'
     end
+  rescue StandardError => e
+    print e
+    redirect_back fallback_location: current_user, alert: 'There was a problem requesting this!'
   end
 
   private
+
+  def can_request
+    i_did_not_requested = Friendship.where('friend_id = ? AND user_id = ?', current_user.id, @user.id).none?
+    friend_did_not_requested = Friendship.where('friend_id = ? AND user_id = ?', @user.id, current_user.id).none?
+    not_friend = current_user.friend?(@user) == false
+    i_did_not_requested && friend_did_not_requested && not_friend
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_user
